@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import * as yup from 'yup';
 
 // 👇 Here are the validation errors you will use with Yup.
 const validationErrors = {
@@ -8,6 +9,19 @@ const validationErrors = {
 }
 
 // 👇 Here you will create your schema.
+const formSchema = yup.object().shape({
+  fullName: yup
+  .string()
+  .trim()
+  .required()
+  .min(3, validationErrors.fullNameTooShort)
+  .max(20, validationErrors.fullNameTooLong),
+  size: yup
+  .string()
+  .required(validationErrors.sizeIncorrect),
+})
+
+export default formSchema
 
 // 👇 This array could help you construct your checkboxes using .map in the JSX.
 const toppings = [
@@ -19,6 +33,7 @@ const toppings = [
 ]
 
 export default function Form() {
+  const [errors, setErrors] = useState(validationErrors)
   return (
     <form>
       <h2>Order Your Pizza</h2>
@@ -28,7 +43,7 @@ export default function Form() {
       <div className="input-group">
         <div>
           <label htmlFor="fullName">Full Name</label><br />
-          <input placeholder="Type full name" id="fullName" type="text" />
+          <input placeholder="Type full name" id="fullName" type="text" minLength="3" maxLength="20"/>
         </div>
         {true && <div className='error'>Bad value</div>}
       </div>
@@ -39,6 +54,9 @@ export default function Form() {
           <select id="size">
             <option value="">----Choose Size----</option>
             {/* Fill out the missing options */}
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
           </select>
         </div>
         {true && <div className='error'>Bad value</div>}
@@ -53,9 +71,40 @@ export default function Form() {
           />
           Pepperoni<br />
         </label>
+        <label key="2">
+          <input
+            name="Green Peppers"
+            type="checkbox"
+          />
+          Green Peppers<br />
+        </label>
+        <label key="3">
+          <input
+            name="Pineapple"
+            type="checkbox"
+          />
+          Pineapple<br />
+        </label>
+        <label key="4">
+          <input
+            name="Mushrooms"
+            type="checkbox"
+          />
+          Mushrooms<br />
+        </label>
+        <label key="5">
+          <input
+            name="Ham"
+            type="checkbox"
+          />
+          Ham<br />
+        </label>
       </div>
       {/* 👇 Make sure the submit stays disabled until the form validates! */}
-      <input type="submit" />
+      <input 
+      type="submit" 
+      disabled={!isValid()}
+      />
     </form>
   )
 }
