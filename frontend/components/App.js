@@ -1,28 +1,23 @@
 import React from 'react'
 import Home from './Home'
 import Form from './Form'
-import { Routes, Route, Link } from 'react-router-dom'
-import axios from 'axios';
-import schema from './Form';
-import * as yup from 'yup';
+import { Routes, Route } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function App() {
   return (
     <div id="app">
       <nav>
-        <div className='nav-links'>
         {/* NavLinks here */}
-        <Link to="/">Home</Link>
-        <Link to="/order">Order</Link>
-        </div>
+        <NavLink to="/" className="active"> Home </NavLink>
+        <NavLink to="/order" className="active"> Order </NavLink>
       </nav>
       {/* Route and Routes here */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/order/*" element={<Form />} />
       </Routes>
-      <Home />
-      <Form />
+
     </div>
   )
 }
