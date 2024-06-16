@@ -17,7 +17,7 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] sum('10', '3') // returns 13
   */
 
-    const sum = ('./sum');
+    // const sum = ('./sum');
 
     test('sum() throws an error "pass valid numbers" ', () => {
       expect(() => sum()).toThrow('pass valid numbers');
@@ -121,3 +121,4 @@ function HelloWorld() {
   )
 }
 
+export default HelloWorld;
