@@ -2,6 +2,8 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
+// const sum = require('./sum');
+
 describe('Sprint 7 Challenge Learner Tests', () => {
   /*
   👉 TASK 1 - Unit Testing of sum function at the bottom of this module
@@ -86,9 +88,9 @@ describe('Sprint 7 Challenge Learner Tests', () => {
   
 
 
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  });
+  // test('you can comment out this test', () => {
+  //   expect(true).toBe(false)
+  // });
 });
 
 function sum(a, b) {
@@ -118,3 +120,4 @@ function HelloWorld() {
     </div>
   )
 }
+
